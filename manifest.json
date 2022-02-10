@@ -1,0 +1,21 @@
+{
+  "name": "Error Submission Module",
+  "version": "3.0.0",
+  "namespace": "bh.community.etm",
+  "package": "ErrorSubmissionModule.dll",
+  "manifest_version": 1,
+
+  "description": "When an error occurs, gives you the ability to have that error info automatically sent for review.  The info is sent anonymously unless you provide us with a username to contact once we've resolved the issue.'",
+  "dependencies": {
+    "bh.blishhud": ">=0.7.0"
+  },
+  "url": "https://github.com/Blish-HUD/ErrorSubmissionModule",
+  "contributors": [
+    {
+      "name": "Freesnow",
+      "username": "LandersXanders.1235",
+      "url": "https://github.com/dlamkins"
+    }
+  ],
+  "enabled_without_gw2": true
+}
