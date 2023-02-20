@@ -5,7 +5,7 @@
   "package": "ErrorSubmissionModule.dll",
   "manifest_version": 1,
 
-  "description": "When an error occurs, gives you the ability to have that error info automatically sent for review.  The info is sent anonymously unless you provide us with a username to contact once we've resolved the issue.'",
+  "description": "When an error in Blish HUD occurs, gives you the ability to have that error info automatically sent for review.  The info is sent anonymously unless you provide us with a username to contact once we've resolved the issue.'",
   "dependencies": {
     "bh.blishhud": ">=0.7.0"
   },
