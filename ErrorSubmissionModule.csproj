@@ -254,12 +254,6 @@
   <ItemGroup>
     <Folder Include="ref\" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\etm.sdk\etm.sdk.csproj">
-      <Project>{93c52e88-5d50-43b0-8d19-a122dfa93d17}</Project>
-      <Name>etm.sdk</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>
