@@ -68,8 +68,10 @@
     <Compile Include="EtmConfig.cs" />
     <Compile Include="EtmContext.cs" />
     <Compile Include="FilterUtil.cs" />
+    <Compile Include="WebHook\WebApi.cs" />
     <Compile Include="ModuleDetails.cs" />
     <Compile Include="PerformanceTransaction.cs" />
+    <Compile Include="WebHook\WebStatMiddleware.cs" />
     <Compile Include="_Utils\DsnAssocUtil.cs" />
     <Compile Include="_Utils\StringUtil.cs" />
   </ItemGroup>
