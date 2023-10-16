@@ -14,6 +14,10 @@ using Module = Blish_HUD.Modules.Module;
 using System.Threading.Tasks;
 using Flurl.Http;
 using Sentry.Protocol;
+using Blish_HUD.Gw2WebApi;
+using System.Net.Http;
+using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 
 namespace BhModule.Community.ErrorSubmissionModule {
     [Export(typeof(Module))]
@@ -54,6 +58,8 @@ namespace BhModule.Community.ErrorSubmissionModule {
             if (_loggerOptions != null) {
                 ApplyEtmConfig();
             }
+
+            HookApi();
         }
 
         protected override void DefineSettings(SettingCollection settings) {
@@ -79,6 +85,18 @@ namespace BhModule.Community.ErrorSubmissionModule {
 
             logConfig.AddSentry(ConfigureSentry);
             LogManager.ReconfigExistingLoggers();
+        }
+
+        private WebHooks.WebApi _webApiHook;
+
+        private void HookApi() {
+            if (_config.ApiHookEnabled) {
+                _webApiHook = new WebHooks.WebApi(_config);
+            }
+        }
+
+        protected override void Update(GameTime gameTime) {
+            _webApiHook?.Update(gameTime);
         }
 
         private int _maxReports = 10;
@@ -182,6 +200,7 @@ namespace BhModule.Community.ErrorSubmissionModule {
 
         protected override void Unload() {
             _etmContextHandle?.Expire();
+            _webApiHook?.UnloadHooks();
 
             if (_userDiscordId != null) {
                 _userDiscordId.SettingChanged -= UpdateUser;

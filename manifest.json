@@ -1,6 +1,6 @@
 {
   "name": "Error Submission Module",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "namespace": "bh.community.etm",
   "package": "ErrorSubmissionModule.dll",
   "manifest_version": 1,

@@ -16,6 +16,12 @@ namespace BhModule.Community.ErrorSubmissionModule {
 
         public string SupportedBlishHUD { get; set; } = ">=0.7.0";
 
+        public bool ApiHookEnabled { get; set; } = false;
+
+        public string ApiReportUri { get; set; } = "https://sam.blishhud.com/";
+
+        public bool ApiReportSuccess { get; set; } = true;
+
         public List<ModuleDetails> Modules { get; set; } = new List<ModuleDetails>();
 
     }
