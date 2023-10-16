@@ -14,10 +14,7 @@ using Module = Blish_HUD.Modules.Module;
 using System.Threading.Tasks;
 using Flurl.Http;
 using Sentry.Protocol;
-using Blish_HUD.Gw2WebApi;
-using System.Net.Http;
 using Microsoft.Xna.Framework;
-using System.Collections.Generic;
 
 namespace BhModule.Community.ErrorSubmissionModule {
     [Export(typeof(Module))]
