@@ -43,8 +43,6 @@ namespace BhModule.Community.ErrorSubmissionModule.WebHooks {
                 }
             } catch (Exception) { /* NOOP */ }
 
-            //Logger.Info($"Got {response.StatusCode} for request to {context.Request.Options.Url} with headers {string.Join(", ", response.ResponseHeaders.Select(a => a.Key + ": " + a.Value))}");
-
             return response;
         }
     }
