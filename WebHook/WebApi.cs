@@ -4,6 +4,7 @@ using Blish_HUD.Modules.Managers;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Reflection;
 
 namespace BhModule.Community.ErrorSubmissionModule.WebHooks {
@@ -20,10 +21,12 @@ namespace BhModule.Community.ErrorSubmissionModule.WebHooks {
 
         private bool _active = false;
 
+        private ErrorSubmissionModule _errorSubmissionModule;
         private WebStatMiddleware _wsm;
 
-        public WebApi(EtmConfig config) {
-            _wsm = new WebStatMiddleware(config);
+        public WebApi(EtmConfig config, ErrorSubmissionModule errorSubmissionModule) {
+            _errorSubmissionModule = errorSubmissionModule;
+            _wsm = new WebStatMiddleware(config, errorSubmissionModule);
 
             try {
                 _cachedAnonConnectionField = typeof(Gw2WebApiService).GetField("_anonymousConnection", BindingFlags.NonPublic | BindingFlags.Instance);

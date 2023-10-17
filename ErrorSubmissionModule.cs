@@ -88,7 +88,7 @@ namespace BhModule.Community.ErrorSubmissionModule {
 
         private void HookApi() {
             if (_config.ApiHookEnabled) {
-                _webApiHook = new WebHooks.WebApi(_config);
+                _webApiHook = new WebHooks.WebApi(_config, this);
             }
         }
 
