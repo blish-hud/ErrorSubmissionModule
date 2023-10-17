@@ -6,14 +6,28 @@ using System.Threading;
 using System.Threading.Tasks;
 using Flurl.Http;
 using System.Net;
+using System.Linq;
 
 namespace BhModule.Community.ErrorSubmissionModule.WebHooks {
     internal class WebStatMiddleware : IWebApiMiddleware {
 
         private EtmConfig _config;
+        private ErrorSubmissionModule _errorSubmissionModule;
 
-        public WebStatMiddleware(EtmConfig config) {
+        string _apiAddressList = null;
+
+        public WebStatMiddleware(EtmConfig config, ErrorSubmissionModule errorSubmissionModule) {
             _config = config;
+            _errorSubmissionModule = errorSubmissionModule;
+
+            PopulateApiHost();
+        }
+
+        private void PopulateApiHost() {
+            try {
+                var hostEntry = Dns.GetHostEntry("api.guildwars2.com");
+                _apiAddressList = string.Join(",", hostEntry.AddressList.OrderBy(a => a.Address));
+            } catch (Exception) { /* NOOP */ }
         }
 
         private bool IsSuccessStatusCode(HttpStatusCode statusCode) {
@@ -37,7 +51,9 @@ namespace BhModule.Community.ErrorSubmissionModule.WebHooks {
                     _config.ApiReportUri.WithHeaders(new {
                         api_endpoint = context.Request.Options.EndpointPath,
                         api_rtt = requestTimer.ElapsedMilliseconds,
-                        api_rc = (int)response.StatusCode
+                        api_rc = (int)response.StatusCode,
+                        api_hosts = _apiAddressList,
+                        etm_version = _errorSubmissionModule.Version.ToString(),
                     }, true).GetAsync();
 #pragma warning restore CS4014
                 }
